@@ -1,0 +1,13 @@
+# Backend
+/api/node_modules
+/api/dist
+/api/config/.env
+
+# Frontend
+/app/node_modules
+/app/build
+/app/config/.env
+
+# Editor directories and files
+.vscode/*
+
