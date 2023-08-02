@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { GameData } from '../../../../types/igdb';
 
-
 function Home() {
 
 	const [games, setGames] = useState<GameData[] | []>([]);
@@ -12,7 +11,7 @@ function Home() {
 		const gamesData: GameData[] = gamesDataJSON !== null ? JSON.parse(gamesDataJSON) : [];
 		if(gamesData.length === 0) {
 			setLoading(true);
-			const response = await fetch('http://localhost:5000/api/igdb');
+			const response = await fetch(`${process.env.REACT_APP_API_URL}/igdb`);
 			console.log(response);
 			const data: GameData[] = await response.json();
 			localStorage.setItem('gamesData', JSON.stringify(data));
