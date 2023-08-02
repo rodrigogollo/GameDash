@@ -4,16 +4,16 @@ import dotenv from 'dotenv';
 dotenv.config({ path: './config/.env' });
 
 import gameRoutes from './routes/games';
-import igdbRoutes from './routes/igdb'
+import igdbRoutes from './routes/igdb';
 
 const app: Express = express();
 const port = process.env.PORT;
 
-app.use(cors())
-app.use('/games', gameRoutes);
-app.use('/igdb', igdbRoutes);
+app.use(cors());
+app.use('/api/games', gameRoutes);
+app.use('/api/igdb', igdbRoutes);
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/api/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');
 });
 

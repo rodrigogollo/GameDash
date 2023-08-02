@@ -1,10 +1,10 @@
 import express, { Request, Response, Router } from 'express';
 import axios from 'axios';
 import { GameData } from '../../../types/igdb';
-import dotenv from 'dotenv'
-dotenv.config()
+import dotenv from 'dotenv';
+dotenv.config();
 
-const { IGDB_CLIENT_ID, IGDB_AUTH } = process.env
+const { IGDB_CLIENT_ID, IGDB_AUTH } = process.env;
 
 const router: Router = express.Router();
 
@@ -12,7 +12,7 @@ const headers = {
   'Client-ID': IGDB_CLIENT_ID,
   Authorization: IGDB_AUTH,
   Accept: 'application/json'
-}
+};
 
 router.get('/', async (req: Request, res: Response) => {
   const games = await axios.post<GameData[]>('https://api.igdb.com/v4/games',  `fields age_ratings,
@@ -65,15 +65,15 @@ router.get('/', async (req: Request, res: Response) => {
     
     l 50;
     `,
-   { headers })
+  { headers });
 
   res.send(games.data);
 });
 
 router.get('/cover/:id', async (req: Request, res: Response) => {
   const covers = await axios.post('https://api.igdb.com/v4/covers',
-  `fields alpha_channel,animated,checksum,game,game_localization,height,image_id,url,width; 
-  where id = ${req.params.id};`, { headers })
+    `fields alpha_channel,animated,checksum,game,game_localization,height,image_id,url,width; 
+  where id = ${req.params.id};`, { headers });
 
   res.send(covers.data);
 });
